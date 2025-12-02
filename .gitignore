@@ -1,0 +1,14 @@
+# IDE
+.idea/
+*.iml
+
+# Build
+build/
+out/
+CMakeFiles/
+*.o
+*.exe
+
+# OS
+.DS_Store
+Thumbs.db
