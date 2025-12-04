@@ -3,8 +3,7 @@
 #include <vector>
 using std::string, std::vector;
 using std::cout, std::endl;
-// Создать класс для хранения данных о студенте: ФИО, факультет, группа, оценки (кто поставил, когда поставил,
-// по какому предмету, что поставил).
+// TODO Создать класс для хранения данных о студенте: ФИО, факультет, группа, оценки (кто поставил, когда поставил, по какому предмету, что поставил).
 
 #pragma region Классы
 class Human {
@@ -77,7 +76,7 @@ public:
           m_year{0} {
     }
 
-    Date(const int& day, const int& month, const int& year) {
+    Date(const int &day, const int &month, const int &year) {
         m_day = day;
         m_month = month;
         m_year = year;
@@ -134,7 +133,8 @@ public:
 
     void outputInfoIntoConsole() const {
         cout << "Mark information:" << endl;
-        cout << "* Teacher: " << m_teacher.getName() + " " + m_teacher.getSurname() + " " + m_teacher.getPatronymic() << endl;
+        cout << "* Teacher: " << m_teacher.getName() + " " + m_teacher.getSurname() + " " + m_teacher.getPatronymic() <<
+                endl;
         cout << "* Date: " << m_date.getDay() << "." << m_date.getMonth() << "." << m_date.getYear() << endl;
         cout << "* Discipline: " + m_discipline << endl;
         cout << "* Mark: " << m_mark << endl;
@@ -184,7 +184,7 @@ public:
         cout << "* Faculty: " << m_faculty << endl;
         cout << "* Group: " << m_group << endl;
         cout << "Marks: " << endl;
-        for (const Mark& element : m_marks) {
+        for (const Mark &element: m_marks) {
             element.outputInfoIntoConsole();
         }
     }
