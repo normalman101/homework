@@ -13,3 +13,6 @@ CMakeFiles/
 # OS
 .DS_Store
 Thumbs.db
+
+# cpp files
+methods.cpp
