@@ -57,6 +57,14 @@ public:
     void setDiscipline(const string &discipline) { m_discipline = discipline; }
     string getDiscipline() const { return m_discipline; }
 
+    void outputInfoIntoConsole() const {
+        cout << "Teacher information: " << endl;
+        cout << "* " + m_name << endl;
+        cout << "* " + m_surname << endl;
+        cout << "* " + m_patronymic << endl;
+        cout << "* " + m_discipline << endl;
+    }
+
 private:
     string m_discipline;
 };
@@ -69,10 +77,10 @@ public:
           m_year{0} {
     }
 
-    Date(const string &date) {
-        m_day = stoi(date.substr(0, 2));
-        m_month = stoi(date.substr(3, 2));
-        m_year = stoi(date.substr(6, 4));
+    Date(const int& day, const int& month, const int& year) {
+        m_day = day;
+        m_month = month;
+        m_year = year;
     }
 
     void setDay(const int &day) { m_day = day; }
@@ -83,6 +91,10 @@ public:
 
     void setYear(const int &year) { m_year = year; }
     int getYear() const { return m_year; }
+
+    void outputInfoIntoConsole() const {
+        cout << "Date: " << m_day << "." << m_month << "." << m_year << endl;
+    }
 
 private:
     int m_day;
@@ -98,7 +110,7 @@ public:
     }
 
     Mark(const Teacher &teacher,
-         const string &date,
+         const Date &date,
          const string &discipline,
          const unsigned int &mark)
 
@@ -119,6 +131,14 @@ public:
 
     void setMark(const unsigned int &mark) { m_mark = mark; }
     unsigned int getMark() const { return m_mark; }
+
+    void outputInfoIntoConsole() const {
+        cout << "Mark information:" << endl;
+        cout << "* Teacher: " << m_teacher.getName() + " " + m_teacher.getSurname() + " " + m_teacher.getPatronymic() << endl;
+        cout << "* Date: " << m_date.getDay() << "." << m_date.getMonth() << "." << m_date.getYear() << endl;
+        cout << "* Discipline: " + m_discipline << endl;
+        cout << "* Mark: " << m_mark << endl;
+    }
 
 private:
     Teacher m_teacher;
@@ -156,6 +176,19 @@ public:
     void setMarks(const vector<Mark> &marks) { m_marks = marks; }
     vector<Mark> getMarks() const { return m_marks; }
 
+    void outputInfoIntoConsole() const {
+        cout << "Student information: " << endl;
+        cout << "* Name: " << m_name << endl;
+        cout << "* Surname: " << m_surname << endl;
+        cout << "* Patronymic: " << m_patronymic << endl;
+        cout << "* Faculty: " << m_faculty << endl;
+        cout << "* Group: " << m_group << endl;
+        cout << "Marks: " << endl;
+        for (const Mark& element : m_marks) {
+            element.outputInfoIntoConsole();
+        }
+    }
+
 private:
     string m_faculty;
     string m_group;
@@ -165,5 +198,15 @@ private:
 
 
 int main() {
-    return 0;
+    Teacher teacher{"Petrov", "Petrovich", "Shishkin", "C++ programming"};
+    Teacher teacher2{"Anna", "Petrovna", "Kornikovna", "Biology"};
+    Date date{4, 12, 2025};
+    Date date2{2, 20, 2025};
+    vector<Mark> marks;
+    Mark mark{teacher, date, teacher.getDiscipline(), 5};
+    Mark mark2{teacher2, date2, teacher2.getDiscipline(), 4};
+    marks.push_back(mark);
+    marks.push_back(mark2);
+    Student student{"Oleg", "Olegovich", "Petrovich", "Software development", "SD1", marks};
+    student.outputInfoIntoConsole();
 }
